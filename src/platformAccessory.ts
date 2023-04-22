@@ -22,7 +22,7 @@ export class ExamplePlatformAccessory {
     private readonly accessory: PlatformAccessory,
   ) {
 
-    this.apiBaseUrl = "http://192.168.7.166:8080/"
+    this.apiBaseUrl = "http://192.168.7.166:8080"
 
     // set accessory information
     this.accessory.getService(this.platform.Service.AccessoryInformation)!
