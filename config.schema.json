@@ -1,25 +1,16 @@
 {
-  "pluginAlias": "HomebridgeRasoberryPiPico2",
-  "pluginType": "accessory",
+  "pluginAlias": "ExampleHomebridgePlugin",
+  "pluginType": "platform",
   "singular": true,
-  "headerDisplay": "Homebridge plugin to control Govee devices that are supported by the official Govee API.",
-  "footerDisplay": "For help and support please visit our [GitHub Wiki](https://github.com/bwp91/homebridge-govee/wiki).",
   "schema": {
     "type": "object",
     "properties": {
       "name": {
-          "type": "string",
-          "description": "The name of the accessory."
-      },
-      "message": {
-          "type": "string",
-          "description": "The message to send to the Raspberry Pi Pico API when the accessory is toggled."
-      },
-      "apiUrl": {
-          "type": "string",
-          "description": "The URL of the Raspberry Pi Pico API."
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "default": "Example Dynamic Platform"
       }
-    },
-    "required": ["name", "message", "apiUrl"]
+    }
   }
 }
