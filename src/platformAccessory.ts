@@ -56,7 +56,7 @@ export class ExamplePlatformAccessory {
       const ledState: LedState = {
         on: value as boolean
       };
-      const response = await axios.post(`${this.apiBaseUrl}/led`, ledState);
+      const response = await axios.post(`${this.apiBaseUrl}/api`, ledState);
       const newState = response.data.on;
       console.log(`Set LED state to: ${newState ? 'ON' : 'OFF'}`);
 
