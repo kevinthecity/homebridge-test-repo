@@ -90,7 +90,7 @@ export class ExamplePlatformAccessory {
    */
   async getOn() {
     try {
-      const response = await axios.get(`${this.apiBaseUrl}/is_open`);
+      const response = await axios.post(`${this.apiBaseUrl}/is_open`);
       const newState = response.data.is_open;
       if (newState !== this.prevIsDoorOpen) {
         console.log(`LED state changed to: ${newState ? 'OPEN' : 'CLOSED'}`);
