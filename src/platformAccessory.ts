@@ -16,6 +16,7 @@ export class ExamplePlatformAccessory {
   
   private service: Service;
   private readonly apiBaseUrl: string;
+  private prevIsDoorOpen: boolean = false;
 
   constructor(
     private readonly platform: ExampleHomebridgePlatform,
@@ -87,28 +88,25 @@ export class ExamplePlatformAccessory {
    * @example
    * this.service.updateCharacteristic(this.platform.Characteristic.On, true)
    */
-  // async getOn() {
-  //   try {
-  //     const response = await axios.get(`${this.apiBaseUrl}/led`);
-  //     const newState = response.data.on;
-  //     if (newState !== this.on) {
-  //       this.on = newState;
-  //       console.log(`LED state changed to: ${newState ? 'ON' : 'OFF'}`);
-  //     }
+  async getOn() {
+    try {
+      const response = await axios.get(`${this.apiBaseUrl}/is_open`);
+      const newState = response.data.is_open;
+      if (newState !== this.prevIsDoorOpen) {
+        console.log(`LED state changed to: ${newState ? 'OPEN' : 'CLOSED'}`);
+      }
 
-  //     this.platform.log.debug('Get Characteristic On ->', isOn);
+      this.platform.log.debug('Get Characteristic On ->', this.prevIsDoorOpen);
 
-  //     return newState;
-  //   } catch (error: any) {
-  //     if (error.response) {
-  //       console.error(`Error getting LED state: ${error.response.status} ${error.response.statusText}`);
-  //     } else {
-  //       console.error('Error getting LED state:', error.message);
-  //     }
-  //   }
-
-  //       // if you need to return an error to show the device as "Not Responding" in the Home app:
-  //   // throw new this.platform.api.hap.HapStatusError(this.platform.api.hap.HAPStatus.SERVICE_COMMUNICATION_FAILURE);
-
-  // }
-}
+      return newState;
+    } catch (error: any) {
+      if (error.response) {
+        console.error(`Error getting LED state: ${error.response.status} ${error.response.statusText}`);
+      } else {
+        console.error('Error getting LED state:', error.message);
+      }
+    }
+    // if you need to return an error to show the device as "Not Responding" in the Home app:
+    // throw new this.platform.api.hap.HapStatusError(this.platform.api.hap.HAPStatus.SERVICE_COMMUNICATION_FAILURE);
+  }
+} 
